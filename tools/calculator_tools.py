@@ -100,8 +100,8 @@ def unit_convert(value: float, from_unit: str, to_unit: str) -> str:
 
 
 @function_tool
-def get_history() -> str:
-    """Retrieve the last 5 calculations from memory."""
+def get_history(dummy: str = "") -> str:
+    """Retrieve the last 5 calculations from memory. Pass empty string for dummy."""
     return json.dumps({"history": _memory.history[-5:], "last_ans": _memory.last_result})
 
 
