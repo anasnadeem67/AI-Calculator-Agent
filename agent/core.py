@@ -39,6 +39,7 @@ def build_agent() -> Agent:
         model=model,
         model_settings=ModelSettings(
             max_tokens=int(os.getenv("MAX_TOKENS", "512")),
+            parallel_tool_calls=False,
         ),
     )
 
