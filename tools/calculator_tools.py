@@ -47,7 +47,7 @@ def basic_calculate(expression: str) -> str:
     try:
         expr_to_eval = expression.lower().replace("ans", str(_memory.last_result))
 
-        allowed = set("0123456789+-*/().% ")
+        allowed = set("0123456789+-*/().% e")
         if not all(c in allowed for c in expr_to_eval):
             return json.dumps({"error": "Invalid characters detected", "status": "error"})
 
