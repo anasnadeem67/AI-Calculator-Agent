@@ -4,6 +4,7 @@ ui/app.py
 Streamlit UI for the Agentic Calculator.
 Run with: streamlit run ui/app.py
 """
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 import asyncio
 import streamlit as st
