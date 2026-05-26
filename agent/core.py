@@ -2,7 +2,7 @@
 agent/core.py
 ──────────────────────────────────────────────────────
 Calculator Agent setup using OpenAI Agents SDK.
-Uses OpenRouter as backend.
+Uses Groq as backend (OpenAI-compatible API).
 """
 
 import os
@@ -17,14 +17,14 @@ load_dotenv()
 
 
 def build_agent() -> Agent:
-    """Creates the calculator agent with OpenRouter backend."""
+    """Creates the calculator agent with Groq backend."""
     client = AsyncOpenAI(
-        api_key=os.getenv("OPENROUTER_API_KEY"),
-        base_url=os.getenv("BASE_URL", "https://openrouter.ai/api/v1"),
+        api_key=os.getenv("GROQ_API_KEY"),
+        base_url=os.getenv("BASE_URL", "https://api.groq.com/openai/v1"),
         max_retries=0,
     )
     model = OpenAIChatCompletionsModel(
-        model=os.getenv("MODEL", "openrouter/free"),
+        model=os.getenv("MODEL", "llama-3.3-70b-versatile"),
         openai_client=client,
     )
     return Agent(
@@ -44,7 +44,7 @@ def build_agent() -> Agent:
 
 
 def get_model_name() -> str:
-    return os.getenv("MODEL", "openrouter/free")
+    return os.getenv("MODEL", "llama-3.3-70b-versatile")
 
 def get_max_tokens() -> int:
     return int(os.getenv("MAX_TOKENS", "512"))

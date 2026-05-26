@@ -4,12 +4,7 @@ ui/app.py
 Streamlit UI for the Agentic Calculator.
 Run with: streamlit run ui/app.py
 """
-import sys
-import os
 
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
-from agent.core import build_agent, get_model_name
 import asyncio
 import streamlit as st
 from agents import Runner
@@ -36,7 +31,7 @@ set_memory(st.session_state.calc_memory)
 
 st.set_page_config(page_title="Agentic Calculator", layout="centered")
 st.title("🤖 Agentic Calculator")
-st.info(f"Model: `{get_model_name()}` via OpenRouter")
+st.info(f"Model: `{get_model_name()}` via Groq")
 
 # ─────────────────────────────────────────────
 # CHAT HISTORY

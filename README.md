@@ -1,13 +1,12 @@
 # 🤖 Agentic Calculator
 
-A calculator agent built with **OpenAI Agents SDK** + **OpenRouter** backend, with a **Streamlit** chat UI.
+A calculator agent built with **OpenAI Agents SDK** + **Groq** backend, with a **Streamlit** chat UI.
 
 ## Folder Structure
 
 ```
 calculator_agent/
 ├── .env                        ← API keys (never commit this)
-├── .env.example                ← Template for .env
 ├── .gitignore
 ├── requirements.txt
 ├── README.md
@@ -29,9 +28,12 @@ calculator_agent/
    ```
 
 2. **Configure environment:**
-   ```bash
-   cp .env.example .env
-   # Add your OPENROUTER_API_KEY in .env
+   Add your `GROQ_API_KEY` in `.env`:
+   ```
+   GROQ_API_KEY=your_key_here
+   BASE_URL=https://api.groq.com/openai/v1
+   MODEL=llama-3.3-70b-versatile
+   MAX_TOKENS=512
    ```
 
 3. **Run the app:**
