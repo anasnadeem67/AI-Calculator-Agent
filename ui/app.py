@@ -5,14 +5,9 @@ Streamlit UI for the Agentic Calculator.
 Run with: streamlit run ui/app.py
 """
 
-import sys
-import os
 import asyncio
 import streamlit as st
 from agents import Runner
-
-# Fix path for Streamlit Cloud — project root ko sys.path mein add karo
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from agent.core import build_agent, get_model_name
 from tools.calculator_tools import CalculationMemory, set_memory
