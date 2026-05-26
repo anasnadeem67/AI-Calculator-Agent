@@ -5,11 +5,6 @@ Streamlit UI for the Agentic Calculator.
 Run with: streamlit run ui/app.py
 """
 
-import sys
-import os
-
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
-
 import asyncio
 import streamlit as st
 from agents import Runner
@@ -57,17 +52,18 @@ if prompt := st.chat_input("Ask me a calculation (e.g., 'sqrt of 144' or 'ans + 
 
     async def call_agent():
         agent = build_agent()
-        return await Runner.run(agent, prompt)
+        # Replace 'ans' in prompt with actual last result value
+        # This avoids Groq tool-calling failures on 'ans' expressions
+        ans_val = st.session_state.calc_memory.last_result
+        resolved_prompt = prompt.lower().replace("ans", str(ans_val)) if "ans" in prompt.lower() else prompt
+        return await Runner.run(agent, resolved_prompt)
 
     with st.chat_message("assistant"):
         with st.spinner("Thinking..."):
-            try:
-                response = asyncio.run(call_agent())
-                final_text = response.final_output
-                st.write(final_text)
-                st.session_state.messages.append({"role": "assistant", "content": final_text})
-            except Exception as e:
-                st.error(f"❌ Full Error: {type(e).__name__}: {str(e)}")
+            response = asyncio.run(call_agent())
+            final_text = response.final_output
+            st.write(final_text)
+            st.session_state.messages.append({"role": "assistant", "content": final_text})
 
 # ─────────────────────────────────────────────
 # SIDEBAR
