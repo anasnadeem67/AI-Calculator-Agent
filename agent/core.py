@@ -24,7 +24,7 @@ def build_agent() -> Agent:
         max_retries=0,
     )
     model = OpenAIChatCompletionsModel(
-        model=os.getenv("MODEL", "llama-3.3-70b-versatile"),
+        model=os.getenv("MODEL", "llama3-70b-8192"),
         openai_client=client,
     )
     return Agent(
@@ -45,7 +45,7 @@ def build_agent() -> Agent:
 
 
 def get_model_name() -> str:
-    return os.getenv("MODEL", "llama-3.3-70b-versatile")
+    return os.getenv("MODEL", "llama3-70b-8192")
 
 def get_max_tokens() -> int:
     return int(os.getenv("MAX_TOKENS", "512"))
